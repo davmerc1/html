@@ -5,28 +5,28 @@ items:
   kind: DeploymentConfig
   metadata:
     labels:
-      app: kylie-fan-club
-      app.kubernetes.io/component: kylie-fan-club
-      app.kubernetes.io/instance: kylie-fan-club
-    name: kylie-fan-club
+      app: HellAPP1
+      app.kubernetes.io/component: HellAPP1
+      app.kubernetes.io/instance: HellAPP1
+    name: HellAPP1
   spec:
-    replicas: 3
+    replicas: 2
     revisionHistoryLimit: 10
     selector:
-      deploymentconfig: kylie-fan-club
+      deploymentconfig: HellAPP1
     template:
       metadata:
         labels:
-          deploymentconfig: kylie-fan-club
+          deploymentconfig: HellAPP1
       spec:
         containers:
-        - image: kylie-fan-club
+        - image: HellAPP1
           imagePullPolicy: Always
-          name: kylie-fan-club
+          name: HellAPP1
           ports:
-          - containerPort: 8080
+          - containerPort: 80
             protocol: TCP
-          - containerPort: 8443
+          - containerPort: 80
             protocol: TCP
     test: false
     triggers:
@@ -37,31 +37,31 @@ items:
         - kylie-fan-club
         from:
           kind: ImageStreamTag
-          name: kylie-fan-club:test
+          name: HellAPP1:test
       type: ImageChange
 - apiVersion: image.openshift.io/v1
   kind: ImageStream
   metadata:
     labels:
-      app: kylie-fan-club
-      app.kubernetes.io/component: kylie-fan-club
-      app.kubernetes.io/instance: kylie-fan-club
-    name: kylie-fan-club
+      app: HellAPP1
+      app.kubernetes.io/component: HellAPP1
+      app.kubernetes.io/instance: HellAPP1
+    name: HellAPP1
 - apiVersion: route.openshift.io/v1
   kind: Route
   metadata:
     labels:
-      app: kylie-fan-club
-      app.kubernetes.io/component: kylie-fan-club
-      app.kubernetes.io/instance: kylie-fan-club
-    name: kylie-fan-club
+      app: HellAPP1
+      app.kubernetes.io/component: HellAPP1
+      app.kubernetes.io/instance: HellAPP1
+    name: HellAPP1
   spec:
     port:
-      targetPort: 8080-tcp
+      targetPort: 80-tcp
     tls:
       termination: edge
     to:
       kind: Service
-      name: kylie-fan-club
+      name: HellAPP1
       weight: 100
     wildcardPolicy: None
